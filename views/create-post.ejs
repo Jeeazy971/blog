@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <%- include('includes/head', { title: 'Ajouter un nouveau post' }) %>
+        <link rel="stylesheet" href="/styles/forms.css" />
+    </head>
+
+    <body>
+        <%- include('includes/header') %>
+        <main>
+            <h1>Ajouter un nouveau post</h1>
+            <form action="/posts" method="POST">
+                <div class="form-control">
+                    <label for="title">Titre</label>
+                    <input type="text" id="title" name="title" required />
+                </div>
+                <div class="form-control">
+                    <label for="summary">Sommaire</label>
+                    <input
+                        type="text"
+                        id="summary"
+                        name="summary"
+                        required
+                        maxlength="255"
+                    />
+                </div>
+                <div class="form-control">
+                    <label for="content">Contenu du post</label>
+                    <textarea id="content" name="content" required rows="5"></textarea>
+                </div>
+                <div class="form-control">
+                    <label for="author">Selectionner l'auteur</label>
+                    <select id="author" name="author">
+                        <% for (const author of authors) { %>
+                        <option value="<%= author.id %>"><%= author.name %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <button class="btn">Ajouter le post</button>
+            </form>
+        </main>
+    </body>
+</html>
