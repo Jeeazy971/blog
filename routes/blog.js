@@ -40,11 +40,23 @@ router.get('/posts/:id', async function (req, res) {
 
     const [posts] = await db.query(query, [req.params.id]);
 
+    
     if (!posts || posts.length === 0) {
         return res.status(404).render('404');
     }
+    
+    const postData = {
+        ...posts[0],
+        date: posts[0].date.toISOString(),
+        humanReadableDate: posts[0].date.toLocaleDateString('fr-FR', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        }),
+    };
 
-    res.render('post-detail', { post: posts[0] });
+    res.render('post-detail', { post: postData });
 });
 
 module.exports = router;
