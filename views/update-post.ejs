@@ -9,10 +9,10 @@
         <%- include('includes/header') %>
         <main>
             <h1>Modification du post</h1>
-            <form action="..." method="...">
+            <form action="/posts/<%= post.id %>/edit" method="POST">
                 <div class="form-control">
                     <label for="title">Titre</label>
-                    <input type="text" id="title" name="title" required />
+                    <input type="text" id="title" value="<%= post.title %>" name="title" required />
                 </div>
                 <div class="form-control">
                     <label for="summary">Sommaire</label>
@@ -20,13 +20,14 @@
                         type="text"
                         id="summary"
                         name="summary"
+                        value="<%= post.summary %>"
                         required
                         maxlength="255"
                     />
                 </div>
                 <div class="form-control">
                     <label for="content">Contenu du post</label>
-                    <textarea id="content" name="content" required rows="5"></textarea>
+                    <textarea id="content" name="content" value="<%= post.body %>" required rows="5"></textarea>
                 </div>
                 <button class="btn">Mettre à jour</button>
             </form>
